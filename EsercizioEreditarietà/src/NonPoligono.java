@@ -1,23 +1,18 @@
-public abstract class Poligono extends FigureGeometriche{
-
-    private int nLati;
+public abstract class NonPoligono extends FigureGeometriche{
     private double area;
     private double perimetro;
 
-    public Poligono(int nLati) {
-        this.nLati = nLati;
+    public NonPoligono(double area, double perimetro) {
+        this.area = area;
+        this.perimetro = perimetro;
     }
 
-    public int getnLati() {
-        return nLati;
-    }
+    public NonPoligono() {
 
-    public void setnLati(int nLati) {
-        this.nLati = nLati;
     }
 
     public double getArea() {
-        return calcolaArea();
+        return area;
     }
 
     public void setArea(double area) {
@@ -25,7 +20,7 @@ public abstract class Poligono extends FigureGeometriche{
     }
 
     public double getPerimetro() {
-        return calcolaPerimetro();
+        return perimetro;
     }
 
     public void setPerimetro(double perimetro) {

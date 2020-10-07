@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class Geometrie{
 
-    private ArrayList<Poligono> poligoni = new ArrayList<Poligono>();
+    private ArrayList<FigureGeometriche> poligoni = new ArrayList<FigureGeometriche>();
 
-    public void aggiungiPoligono(Poligono p){
+    public void aggiungiPoligono(FigureGeometriche p){
         //Information Leak
         //CLONARE p e aggiungere il clone
         //chi chiama il metodo si ritrova un oggetto che non è effettivamente quello della lista
@@ -30,7 +30,7 @@ public class Geometrie{
         System.out.println(poligoni);
     }
 
-    public Poligono getPoligono(int index){
+    public FigureGeometriche getPoligono(int index){
         return poligoni.get(index);
     }
 

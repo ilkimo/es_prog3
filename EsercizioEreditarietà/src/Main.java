@@ -11,7 +11,9 @@ public class Main {
         g.aggiungiPoligono(new Triangolo(3,8,7, 15));
         g.aggiungiPoligono(new Triangolo(3,24,26, 10));
 
-        System.out.println("Area poligono: " + g.getPoligono(3).calcolaArea());
+        System.out.println("Area poligono: " + ((Poligono)(g.getPoligono(3))).calcolaArea());
+
+        g.aggiungiPoligono(new Cerchio(2));
 
         g.stampaPoligoni();
         int scelta = 0;
@@ -55,6 +57,13 @@ public class Main {
                     break;
                 }
                 case 4: {
+                    int raggio;
+                    System.out.print("Inserisci il valore del raggio: ");
+                    raggio = sc.nextInt();
+                    g.aggiungiPoligono(new Cerchio(raggio));
+                    break;
+                }
+                case 5: {
                     g.stampaPoligoni();
                 }
                 default:
@@ -69,7 +78,8 @@ public class Main {
         System.out.println("1 - Inserisci un Rettangolo");
         System.out.println("2 - Inserisci un Parallelogramma");
         System.out.println("3 - Inserisci un Triangolo");
-        System.out.println("4 - Stampa poligoni");
+        System.out.println("4 - Inserisci un Cerchio");
+        System.out.println("5 - Stampa poligoni");
         System.out.println("-1 - ESCI");
     }
 }
