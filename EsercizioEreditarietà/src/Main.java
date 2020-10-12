@@ -53,7 +53,7 @@ public class Main {
                     latoB = sc.nextInt();
                     System.out.print("Inserisci il valore del lato C: ");
                     latoC = sc.nextInt();
-                    g.aggiungiPoligono(new Triangolo(4, latoA, latoB, latoC));
+                    g.aggiungiPoligono(new Triangolo(3, latoA, latoB, latoC));
                     break;
                 }
                 case 4: {
