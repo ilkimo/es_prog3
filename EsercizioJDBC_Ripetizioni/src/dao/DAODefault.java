@@ -1,9 +1,6 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 /*gestione del popolamento del db con valori di default*/
@@ -22,15 +19,15 @@ public class DAODefault {
         return defaultUsers;
     }
 
-    private static ArrayList<Corso> getDefaultRipetizioni(){
-        ArrayList<Corso> defaultRipetizioni = new ArrayList<>();
+    private static ArrayList<Corso> getDefaultCorsi(){
+        ArrayList<Corso> defaultCorsi = new ArrayList<>();
 
-        defaultRipetizioni.add(new Corso("Programmazione III"));
-        defaultRipetizioni.add(new Corso("IUM"));
-        defaultRipetizioni.add(new Corso("Reti I"));
-        defaultRipetizioni.add(new Corso("LPP"));
+        defaultCorsi.add(new Corso("Prog III"));
+        defaultCorsi.add(new Corso("IUM"));
+        defaultCorsi.add(new Corso("Reti I"));
+        defaultCorsi.add(new Corso("LPP"));
 
-        return defaultRipetizioni;
+        return defaultCorsi;
     }
 
     private static ArrayList<Docente> getDefaultDocenti(){
@@ -47,7 +44,7 @@ public class DAODefault {
     private static ArrayList<DocRip> getDefaultDocentiRipetizioni(){
         ArrayList<DocRip> defaultDocentiRipetizioni = new ArrayList<>();
 
-        defaultDocentiRipetizioni.add(new DocRip("Liliana", "Ardissono", "Programmazione III"));
+        defaultDocentiRipetizioni.add(new DocRip("Liliana", "Ardissono", "Prog III"));
         defaultDocentiRipetizioni.add(new DocRip("Viviana", "Patti", "IUM"));
         defaultDocentiRipetizioni.add(new DocRip("Luca", "Padovani", "LPP"));
         defaultDocentiRipetizioni.add(new DocRip("Leonardo", "Di Caprio", "Reti I"));
@@ -55,13 +52,33 @@ public class DAODefault {
         return defaultDocentiRipetizioni;
     }
 
+    private static ArrayList<Lezione> getDefaultLezioni(){
+        ArrayList<Lezione> defaultLezioni = new ArrayList<>();
+
+        defaultLezioni.add(new Lezione(2, 1, 1));
+        defaultLezioni.add(new Lezione(4, 2,1));
+        defaultLezioni.add(new Lezione(3, 4, 2));
+
+        return defaultLezioni;
+    }
+
+
+
     public static void queryDropTables(Statement st) throws SQLException {
         String dropTableUtente = "DROP TABLE UTENTE;";
         String dropTableDocente = "DROP TABLE DOCENTE;";
         String dropTableRipetizione = "DROP TABLE CORSO;";
         String dropTableDocRip = "DROP TABLE DOCRIP;";
+        String dropTableLezione = "DROP TABLE LEZIONE;";
 
         //Dropping Table
+        try {
+            st.executeUpdate(dropTableLezione);
+            System.out.println("Table Lezione has been deleted.");
+        } catch (SQLException e) {
+            System.out.println("Table Lezione doesn't exist.");
+        }
+
         try {
             st.executeUpdate(dropTableDocRip);
             System.out.println("Table DOCRIP has been deleted.");
@@ -89,12 +106,14 @@ public class DAODefault {
         } catch (SQLException e) {
             System.out.println("Table CORSO doesn't exist.");
         }
+
     }
 
     public static void populateTables(Connection conn1) throws SQLException {
         ArrayList<Utente> users = getDefaultUsers();
+        PreparedStatement ps;
         for(Utente u: users){
-            PreparedStatement ps = conn1.prepareStatement("INSERT INTO UTENTE VALUES(?, ?, ?, ?)");
+            ps = conn1.prepareStatement("INSERT INTO UTENTE VALUES(?, ?, ?, ?)");
             ps.setObject(1, null);
             ps.setString(2, u.getMail());
             ps.setString(3, u.getPassword());
@@ -102,9 +121,9 @@ public class DAODefault {
             ps.executeUpdate();
         }
 
-        ArrayList<Corso> corsiRipetizioni = getDefaultRipetizioni();
+        ArrayList<Corso> corsiRipetizioni = getDefaultCorsi();
         for(Corso r: corsiRipetizioni){
-            PreparedStatement ps = conn1.prepareStatement("INSERT INTO CORSO VALUES(?, ?)");
+            ps = conn1.prepareStatement("INSERT INTO CORSO VALUES(?, ?)");
             ps.setObject(1, null);
             ps.setString(2, r.getNomeCorso());
 
@@ -113,7 +132,7 @@ public class DAODefault {
 
         ArrayList<Docente> docenti = getDefaultDocenti();
         for(Docente d: docenti) {
-            PreparedStatement ps = conn1.prepareStatement("INSERT INTO DOCENTE VALUES(?, ?, ?)");
+            ps = conn1.prepareStatement("INSERT INTO DOCENTE VALUES(?, ?, ?)");
             ps.setObject(1, null);
             ps.setString(2, d.getNome());
             ps.setString(3, d.getCognome());
@@ -123,10 +142,20 @@ public class DAODefault {
 
         ArrayList<DocRip> docrip = getDefaultDocentiRipetizioni();
         for(DocRip d: docrip){
-            PreparedStatement ps = conn1.prepareStatement("INSERT INTO DOCRIP VALUES(?, ?, ?)");
-            ps.setString(1, d.getNomeDocente());
-            ps.setString(2, d.getCognomeDocente());
+            ps = conn1.prepareStatement("INSERT INTO DOCRIP VALUES(?, ?, ?)");
+            ps.setString(1, d.getNomeDoc());
+            ps.setString(2, d.getCognomeDoc());
             ps.setString(3, d.getCorso());
+
+            ps.executeUpdate();
+        }
+
+        ArrayList<Lezione> lezioni = getDefaultLezioni();
+        for(Lezione l: lezioni){
+            ps = conn1.prepareStatement("INSERT INTO LEZIONE VALUES(?, ?, ?)");
+            ps.setInt(1, l.getIdCorso());
+            ps.setInt(2, l.getIdDocente());
+            ps.setInt(3, l.getIdUtente());
 
             ps.executeUpdate();
         }

@@ -1,22 +1,22 @@
 package dao;
 
 public class DocRip {
-    private String nomeDocente;
-    private String cognomeDocente;
+    private String nomeDoc;
+    private String cognomeDoc;
     private String corso;
 
-    public DocRip(String nomeDocente, String cognomeDocente, String corso) {
-        this.nomeDocente = nomeDocente;
-        this.cognomeDocente = cognomeDocente;
+    public DocRip(String nomeDoc, String cognomeDoc, String corso) {
+        this.nomeDoc = nomeDoc;
+        this.cognomeDoc = cognomeDoc;
         this.corso = corso;
     }
 
-    public String getNomeDocente() {
-        return nomeDocente;
+    public String getNomeDoc() {
+        return nomeDoc;
     }
 
-    public String getCognomeDocente() {
-        return cognomeDocente;
+    public String getCognomeDoc() {
+        return cognomeDoc;
     }
 
     public String getCorso() {

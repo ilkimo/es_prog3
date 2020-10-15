@@ -35,9 +35,9 @@ public class MainApp {
                     }
                     System.out.println("Vuoi inserire o eliminare queste tuple? (1 inserimento: 2 eliminazione)");
                     if(Integer.valueOf(sc.nextLine()) == 1)
-                        DAO.queryInsertCorso(corsiRipetizioni);
+                        DAO.queryInsert(corsiRipetizioni);
                     else
-                        DAO.queryDeleteCorso(corsiRipetizioni);
+                        DAO.queryDelete(corsiRipetizioni);
                     break;
                 case 2:
                     System.out.println("Quante modifiche di docenti vuoi fare?");
@@ -54,11 +54,30 @@ public class MainApp {
                     }
                     System.out.println("Vuoi inserire o eliminare queste tuple? (1 inserimento: 2 eliminazione)");
                     if(Integer.valueOf(sc.nextLine()) == 1)
-                        DAO.queryInsertDocente(docenti);
+                        DAO.queryInsert(docenti);
                     else
-                        DAO.queryDeleteDocente(docenti);
+                        DAO.queryDelete(docenti);
                     break;
                 case 3:/*parte due dell'es*/
+                    System.out.println("Quante modifiche alle lezioni vuoi fare?");
+                    numeroVolte = Integer.valueOf(sc.nextLine());
+                    ArrayList<Lezione> lezioni = new ArrayList<>();
+                    while(numeroVolte != 0) {
+                        int idCorso, idDocente, idUtente;
+                        System.out.print("Inserisci l'id del corso: ");
+                        idCorso = Integer.valueOf(sc.nextLine());
+                        System.out.print("Inserisci l'id del docente: ");
+                        idDocente = Integer.valueOf(sc.nextLine());
+                        System.out.print("Inserisci l'id dell'utente: ");
+                        idUtente = Integer.valueOf(sc.nextLine());
+                        lezioni.add(new Lezione(idCorso, idDocente, idUtente));
+                        numeroVolte--;
+                    }
+                    System.out.println("Vuoi inserire o eliminare queste tuple? (1 inserimento: 2 eliminazione)");
+                    if(Integer.valueOf(sc.nextLine()) == 1)
+                        DAO.queryInsert(lezioni);
+                    else
+                        DAO.queryDelete(lezioni);
                     break;
                 case 4:
                     System.out.println("Quante modifiche di associazione tra docente e corso vuoi fare?");
@@ -77,9 +96,9 @@ public class MainApp {
                     }
                     System.out.println("Vuoi inserire o eliminare queste tuple? (1 inserimento: 2 eliminazione)");
                     if(Integer.valueOf(sc.nextLine()) == 1)
-                        DAO.queryInsertDocRip(ripetizioni);
+                        DAO.queryInsert(ripetizioni);
                     else
-                        DAO.queryDeleteDocRip(ripetizioni);
+                        DAO.queryDelete(ripetizioni);
                     break;
                 case 5:
                     System.out.println("Quante modifiche di utenti vuoi fare?");
@@ -91,16 +110,16 @@ public class MainApp {
                         mail = sc.nextLine();
                         System.out.print("Inserisci la password dell'utente: ");
                         password = sc.nextLine();
-                        System.out.print("Inserisci il ruolo dell'utente (Amministratore o cliente): ");
+                        System.out.print("Inserisci il ruolo dell'utente (Amministratore o Utente): ");
                         ruolo = sc.nextLine();
                         utenti.add(new Utente(mail, password, ruolo));
                         numeroVolte--;
                     }
                     System.out.println("Vuoi inserire o eliminare queste tuple? (1 inserimento: 2 eliminazione)");
                     if(Integer.valueOf(sc.nextLine()) == 1)
-                        DAO.queryInsertUtente(utenti);
+                        DAO.queryInsert(utenti);
                     else
-                        DAO.queryDeleteUtente(utenti);
+                        DAO.queryDelete(utenti);
                     break;
                 case 6:
                     DAO.queryRipCorso();
