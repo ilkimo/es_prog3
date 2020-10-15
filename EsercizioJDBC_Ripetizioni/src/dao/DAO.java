@@ -5,15 +5,17 @@ import java.util.ArrayList;
 
 public class DAO extends DAODefault{
 
-    /*
+
     private static final String dbName="ripetizioni";
     private static final String url1 = "jdbc:mysql://localhost:8889/"+dbName+"?useSSL=false";
     private static final String user = "Livio";
-    private static final String password = "PasswordMySQL99";*/
+    private static final String password = "PasswordMySQL99";
 
+    /*
     private static final String url1 = "jdbc:mysql://localhost:3306/ripetizioni";
     private static final String user = "root";
     private static final String password = "";
+     */
 
     public static void registerDriver() {
         try {
@@ -36,7 +38,7 @@ public class DAO extends DAODefault{
             assert conn1 != null;   //per sicurezza
             Statement st = conn1.createStatement();
 
-            //queryDropTables(st, conn1);
+            queryDropTables(st);
             queryCreateTables(st);
             populateTables(conn1); /*con valori di default*/
 
@@ -55,9 +57,9 @@ public class DAO extends DAODefault{
     }
 
     public static void queryCreateTables(Statement st) throws SQLException {
-        String createTableUtente = "CREATE TABLE UTENTE (mail varchar(30) primary key, password varchar(50), ruolo varchar(15));";
-        String createTableRipetizione = "CREATE TABLE CORSO (nomecorso varchar(30), primary key(nomecorso));";
-        String createTableDocente = "CREATE TABLE DOCENTE (nome varchar(30), cognome varchar(30), primary key(nome, cognome));";
+        String createTableUtente = "CREATE TABLE UTENTE (id int auto_increment primary key, mail varchar(30) unique, password varchar(50), ruolo varchar(15));";
+        String createTableRipetizione = "CREATE TABLE CORSO (id int auto_increment primary key, nomecorso varchar(30) unique);";
+        String createTableDocente = "CREATE TABLE DOCENTE (id int auto_increment primary key, nome varchar(30), cognome varchar(30), unique(nome, cognome));";
         String createTableDocRip = "CREATE TABLE DOCRIP (nome varchar(30), cognome varchar(30), corso varchar(30)," +
                                    "constraint fk_doc foreign key(nome, cognome) references DOCENTE(nome, cognome) on delete cascade on update cascade, " +
                                    "constraint fk_rip foreign key(corso) references CORSO(nomecorso) on delete cascade on update cascade, " +

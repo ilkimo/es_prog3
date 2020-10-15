@@ -25,7 +25,7 @@ public class DAODefault {
     private static ArrayList<Corso> getDefaultRipetizioni(){
         ArrayList<Corso> defaultRipetizioni = new ArrayList<>();
 
-        defaultRipetizioni.add(new Corso("Prog III"));
+        defaultRipetizioni.add(new Corso("Programmazione III"));
         defaultRipetizioni.add(new Corso("IUM"));
         defaultRipetizioni.add(new Corso("Reti I"));
         defaultRipetizioni.add(new Corso("LPP"));
@@ -61,35 +61,62 @@ public class DAODefault {
         String dropTableRipetizione = "DROP TABLE CORSO;";
         String dropTableDocRip = "DROP TABLE DOCRIP;";
 
-        st.executeUpdate(dropTableDocRip);
-        st.executeUpdate(dropTableUtente);
-        st.executeUpdate(dropTableDocente);
-        st.executeUpdate(dropTableRipetizione);
+        //Dropping Table
+        try {
+            st.executeUpdate(dropTableDocRip);
+            System.out.println("Table DOCRIP has been deleted.");
+        } catch (SQLException e) {
+            System.out.println("Table DOCRIP doesn't exist.");
+        }
+
+        try {
+            st.executeUpdate(dropTableUtente);
+            System.out.println("Table UTENTE has been deleted.");
+        } catch (SQLException e) {
+            System.out.println("Table UTENTE doesn't exist.");
+        }
+
+        try {
+            st.executeUpdate(dropTableDocente);
+            System.out.println("Table DOCENTE has been deleted.");
+        } catch (SQLException e) {
+            System.out.println("Table DOCENTE doesn't exist.");
+        }
+
+        try {
+            st.executeUpdate(dropTableRipetizione);
+            System.out.println("Table CORSO has been deleted.");
+        } catch (SQLException e) {
+            System.out.println("Table CORSO doesn't exist.");
+        }
     }
 
     public static void populateTables(Connection conn1) throws SQLException {
         ArrayList<Utente> users = getDefaultUsers();
         for(Utente u: users){
-            PreparedStatement ps = conn1.prepareStatement("INSERT INTO UTENTE VALUES(?, ?, ?)");
-            ps.setString(1, u.getMail());
-            ps.setString(2, u.getPassword());
-            ps.setString(3, u.getRuolo());
+            PreparedStatement ps = conn1.prepareStatement("INSERT INTO UTENTE VALUES(?, ?, ?, ?)");
+            ps.setObject(1, null);
+            ps.setString(2, u.getMail());
+            ps.setString(3, u.getPassword());
+            ps.setString(4, u.getRuolo());
             ps.executeUpdate();
         }
 
         ArrayList<Corso> corsiRipetizioni = getDefaultRipetizioni();
         for(Corso r: corsiRipetizioni){
-            PreparedStatement ps = conn1.prepareStatement("INSERT INTO CORSO VALUES(?)");
-            ps.setString(1, r.getNomeCorso());
+            PreparedStatement ps = conn1.prepareStatement("INSERT INTO CORSO VALUES(?, ?)");
+            ps.setObject(1, null);
+            ps.setString(2, r.getNomeCorso());
 
             ps.executeUpdate();
         }
 
         ArrayList<Docente> docenti = getDefaultDocenti();
         for(Docente d: docenti) {
-            PreparedStatement ps = conn1.prepareStatement("INSERT INTO DOCENTE VALUES(?, ?)");
-            ps.setString(1, d.getNome());
-            ps.setString(2, d.getCognome());
+            PreparedStatement ps = conn1.prepareStatement("INSERT INTO DOCENTE VALUES(?, ?, ?)");
+            ps.setObject(1, null);
+            ps.setString(2, d.getNome());
+            ps.setString(3, d.getCognome());
 
             ps.executeUpdate();
         }
