@@ -1,0 +1,4 @@
+Scarpinati; Livio; Roma; 32; Torino
+Bianchi; Mario; Po; 7; Torino
+Verdi; Maria; Roma; 76; Torino
+Neri; Guido Maria; Bellezia; 23; Torino
