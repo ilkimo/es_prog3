@@ -18,7 +18,7 @@ public class Main extends Application {
         root.setCenter(editorLoader.load()); //mette al centro la vista
         EditorController editorController = editorLoader.getController();
     
-        FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("menu.fxml"));
+        FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("menuButtons.fxml"));
         root.setTop(menuLoader.load()); //mette in alto la vista
         MenuController menuController = menuLoader.getController();
         
@@ -27,7 +27,7 @@ public class Main extends Application {
         editorController.initModel(model);
         menuController.initModel(model);
         
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 1000, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

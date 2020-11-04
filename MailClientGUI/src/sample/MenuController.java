@@ -9,8 +9,10 @@ import java.io.File;
 public class MenuController {
     private EmailDataModel model ;
     
+    /*
     @FXML
-    private MenuBar menuBar ;
+    private MenuBar menuBarButtons ;
+    */
     
     public void initModel(EmailDataModel model) {
         if (this.model != null) {
@@ -19,19 +21,21 @@ public class MenuController {
         this.model = model ;
     }
     
+    
     @FXML
     public void load() {
-        FileChooser chooser = new FileChooser();
-        File file = chooser.showOpenDialog(menuBar.getScene().getWindow());
+        /*FileChooser chooser = new FileChooser();
+        File file = chooser.showOpenDialog(menuBarButtons.getScene().getWindow());
         if (file != null) {
             try {
                 model.loadData(file);
             } catch (Exception exc) {
                 // handle exception...
             }
-        }
+        }*/
     }
     
+    /*
     @FXML
     public void save() {
         
@@ -41,6 +45,6 @@ public class MenuController {
     
     @FXML
     public void exit() {
-        menuBar.getScene().getWindow().hide();
-    }
+        menuBarButtons.getScene().getWindow().hide();
+    }*/
 }
