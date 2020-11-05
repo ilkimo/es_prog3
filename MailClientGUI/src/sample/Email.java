@@ -2,9 +2,7 @@ package sample;
 
 import javafx.beans.property.*;
 import javafx.collections.ObservableList;
-
 import java.util.GregorianCalendar;
-import java.util.List;
 
 public class Email {
     private final LongProperty id = new SimpleLongProperty();
@@ -12,7 +10,7 @@ public class Email {
     private final ListProperty<String> receiverAddress = new SimpleListProperty<>();
     private final StringProperty object  = new SimpleStringProperty();
     private final StringProperty body  = new SimpleStringProperty();
-    private GregorianCalendar date;
+    private final ObjectProperty<GregorianCalendar> date = new SimpleObjectProperty<>();
     
     public Email(Long id, String senderAddress, ObservableList<String> receiverAddress, String object, String body, GregorianCalendar date) {
         setId(id);
@@ -84,10 +82,14 @@ public class Email {
     }
     
     public GregorianCalendar getDate() {
+        return date.get();
+    }
+    
+    public ObjectProperty<GregorianCalendar> dateProperty() {
         return date;
     }
     
     public void setDate(GregorianCalendar date) {
-        this.date = date;
+        this.date.set(date);
     }
 }
