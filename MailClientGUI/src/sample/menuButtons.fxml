@@ -20,32 +20,32 @@
  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 </rowConstraints>
 <children>
-   <Button fx:id="newMailButton" mnemonicParsing="false" text="New Mail">
+   <Button fx:id="newMailButton" onAction="#handleNewMailButton" mnemonicParsing="false" text="New Mail">
       <GridPane.margin>
          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
       </GridPane.margin>
    </Button>
-   <Button fx:id="RefreshMailboxButton" mnemonicParsing="false" text="Refresh Mailbox" GridPane.columnIndex="1">
+   <Button fx:id="RefreshMailboxButton" onAction="#handleRefreshMailboxButton" mnemonicParsing="false" text="Refresh Mailbox" GridPane.columnIndex="1">
       <GridPane.margin>
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </GridPane.margin>
    </Button>
-   <Button fx:id="DeleteButton" alignment="TOP_LEFT" mnemonicParsing="false" text="Delete" GridPane.columnIndex="6" GridPane.halignment="RIGHT">
+   <Button fx:id="DeleteButton" onAction="#handleDeleteButton" alignment="TOP_LEFT" mnemonicParsing="false" text="Delete" GridPane.columnIndex="6" GridPane.halignment="RIGHT">
       <GridPane.margin>
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </GridPane.margin>
    </Button>
-   <Button fx:id="ForwardButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" text="Forward" GridPane.columnIndex="5" GridPane.halignment="RIGHT">
+   <Button fx:id="ForwardButton" onAction="#handleForwardButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" text="Forward" GridPane.columnIndex="5" GridPane.halignment="RIGHT">
       <GridPane.margin>
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </GridPane.margin>
    </Button>
-   <Button fx:id="ReplyAllButton" mnemonicParsing="false" text="Reply All" GridPane.columnIndex="4" GridPane.halignment="RIGHT">
+   <Button fx:id="ReplyAllButton" onAction="#handleReplyAllButton" mnemonicParsing="false" text="Reply All" GridPane.columnIndex="4" GridPane.halignment="RIGHT">
       <GridPane.margin>
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </GridPane.margin>
    </Button>
-   <Button fx:id="ReplyButton" mnemonicParsing="false" text="Reply" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+   <Button fx:id="ReplyButton" onAction="#handleReplyButton" mnemonicParsing="false" text="Reply" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
       <GridPane.margin>
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </GridPane.margin>

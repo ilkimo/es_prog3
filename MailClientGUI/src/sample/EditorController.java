@@ -9,15 +9,6 @@ public class EditorController {
     private Label emailObjectLabel;
     @FXML
     private TextField emailBodyField ;
-    /*
-    @FXML
-    private TextField firstNameField ;
-    @FXML
-    private TextField lastNameField ;
-    @FXML
-    private TextField emailField ;
-    
-     */
     
     private EmailDataModel model ;
     
@@ -31,31 +22,13 @@ public class EditorController {
             if (oldEmail != null) {
                 emailObjectLabel.textProperty().unbindBidirectional(oldEmail.objectProperty());
                 emailBodyField.textProperty().unbindBidirectional(oldEmail.bodyProperty());
-                /*
-                firstNameField.textProperty().unbindBidirectional(oldPerson.firstNameProperty());
-                lastNameField.textProperty().unbindBidirectional(oldPerson.lastNameProperty());
-                emailField.textProperty().unbindBidirectional(oldPerson.emailProperty());
-                
-                 */
             }
             if (newEmail == null) {
                 emailBodyField.setText("");
                 emailBodyField.setText("");
-               /*
-                firstNameField.setText("");
-                lastNameField.setText("");
-                emailField.setText("");
-                
-                */
             } else {
                 emailObjectLabel.textProperty().bindBidirectional(newEmail.objectProperty());
                 emailBodyField.textProperty().bindBidirectional(newEmail.bodyProperty());
-                /*
-                firstNameField.textProperty().bindBidirectional(newPerson.firstNameProperty());
-                lastNameField.textProperty().bindBidirectional(newPerson.lastNameProperty());
-                emailField.textProperty().bindBidirectional(newPerson.emailProperty());
-                
-                 */
             }
         });
     }
