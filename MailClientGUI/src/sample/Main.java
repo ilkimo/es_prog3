@@ -7,6 +7,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    
+    private String theme1Url = getClass().getResource("lightTheme.css").toExternalForm();
+    
+    
     @Override
     public void start(Stage primaryStage) throws Exception{
         BorderPane root = new BorderPane();
@@ -18,7 +22,7 @@ public class Main extends Application {
         root.setCenter(editorLoader.load()); //mette al centro la vista
         EditorController editorController = editorLoader.getController();
     
-        FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("menuButtons.fxml"));
+        FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("menuNew.fxml"));
         root.setTop(menuLoader.load()); //mette in alto la vista
         MenuController menuController = menuLoader.getController();
         
@@ -28,6 +32,11 @@ public class Main extends Application {
         menuController.initModel(model);
         
         Scene scene = new Scene(root, 1000, 600);
+    
+        System.out.println("scene stylesheets: " + scene.getStylesheets());
+       // scene.getStylesheets().add(theme1Url);
+        System.out.println("scene stylesheets: " + scene.getStylesheets());
+        
         primaryStage.setScene(scene);
         primaryStage.show();
     }

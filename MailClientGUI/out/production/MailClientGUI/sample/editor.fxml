@@ -17,7 +17,7 @@
       <font>
          <Font name="System Bold" size="20.0" />
       </font></Label>
-    <TextField fx:id="emailBodyField" alignment="TOP_LEFT" editable="false" prefHeight="783.0" prefWidth="1110.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS" />
+    <TextField fx:id="emailBodyField" styleClass="text-field" alignment="TOP_LEFT" editable="false" prefHeight="783.0" prefWidth="1110.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS" />
 
     <padding>
         <Insets bottom="10" left="10" right="10" top="10" />
