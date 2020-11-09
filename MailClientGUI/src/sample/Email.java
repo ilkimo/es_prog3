@@ -12,7 +12,8 @@ public class Email {
     private final StringProperty body  = new SimpleStringProperty();
     private final ObjectProperty<GregorianCalendar> date = new SimpleObjectProperty<>();
     
-    public Email(Long id, String senderAddress, ObservableList<String> receiverAddress, String object, String body, GregorianCalendar date) {
+    public Email(Long id, String senderAddress, ObservableList<String> receiverAddress, String object, String body,
+                 GregorianCalendar date) {
         setId(id);
         setSenderAddress(senderAddress);
         setReceiverAddress(receiverAddress);
