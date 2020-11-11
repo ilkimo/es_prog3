@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,12 +46,12 @@ public class MenuController {
         
         Scene thisScene = newMailButton.getScene();
         System.out.println("scene stylesheets on button 2 click: " + thisScene.getStylesheets());
-        
+    
         //TODO: load new mail GUI
         FXMLLoader newMailLoader = new FXMLLoader(getClass().getResource("newMail.fxml"));
         root.setCenter(newMailLoader.load());
         NewEmailController newEmailController = newMailLoader.getController();
-        newEmailController.initModel(model);
+        newEmailController.initModel(model, "", "", "");
         
         theme = thisScene.getStylesheets().get(0);
         
@@ -67,28 +69,140 @@ public class MenuController {
     }
     
     @FXML
-    private void handleReplyButton(ActionEvent event) {
+    private void handleReplyButton(ActionEvent event) throws IOException {
         //TODO: Handle Click Here
         System.out.println("Reply Button Clicked");
+    
+        BorderPane root = new BorderPane();
+    
+        Scene thisScene = newMailButton.getScene();
+        System.out.println("scene stylesheets on button 2 click: " + thisScene.getStylesheets());
+    
+        ObjectProperty<Email> email = model.currentEmailProperty();
+    
+        String subject = "";
+        String sender = "";
+        
+        System.out.println(email.toString());
+    
+        //TODO: gestire il caso in cui non seleziono nessuna mail -> va bene gestito così?
+        if(email.getValue()!=null) {
+            sender = email.get().getSenderAddress();
+            subject = email.get().getObject();
+    
+            //TODO: load new mail GUI
+            FXMLLoader newMailLoader = new FXMLLoader(getClass().getResource("newMail.fxml"));
+            root.setCenter(newMailLoader.load());
+            NewEmailController newEmailController = newMailLoader.getController();
+            newEmailController.initModel(model, sender, "Re: " + subject, "");
+    
+            theme = thisScene.getStylesheets().get(0);
+    
+            Stage newMailStage = new Stage();
+            Scene scene = new Scene(root, 900, 550);
+            scene.getStylesheets().add(theme);
+            newMailStage.setScene(scene);
+            newMailStage.show();
+        }else{
+            //TODO: dire all'utente di selezionare una mail
+        }
     }
     
     @FXML
-    private void handleReplyAllButton(ActionEvent event) {
+    private void handleReplyAllButton(ActionEvent event) throws IOException {
         //TODO: Handle Click Here
         System.out.println("Reply All Button Clicked");
+    
+        BorderPane root = new BorderPane();
+    
+        Scene thisScene = newMailButton.getScene();
+        System.out.println("scene stylesheets on button 2 click: " + thisScene.getStylesheets());
+    
+        ObjectProperty<Email> email = model.currentEmailProperty();
+    
+        String subject = "";
+        String newReceivers = "";
+    
+        //TODO: gestire il caso in cui non seleziono nessuna mail -> va bene gestito così?
+        if(email.getValue()!=null) {
+            subject = email.get().getObject();
+    
+            ObservableList<String> receivers = email.get().getReceiverAddress();
+            newReceivers += email.get().getSenderAddress();
+    
+            //TODO: capire come rappresentare i singoli destinatari -> Stringa unica con , come sepparatore? ArrayList?
+            for(String r : receivers) {
+                if(!newReceivers.contains(r))
+                    newReceivers += ", " + r;
+            }
+    
+            //TODO: load new mail GUI
+            FXMLLoader newMailLoader = new FXMLLoader(getClass().getResource("newMail.fxml"));
+            root.setCenter(newMailLoader.load());
+            NewEmailController newEmailController = newMailLoader.getController();
+            newEmailController.initModel(model, newReceivers, "Re: " + subject, "");
+    
+            theme = thisScene.getStylesheets().get(0);
+    
+            Stage newMailStage = new Stage();
+            Scene scene = new Scene(root, 900, 550);
+            scene.getStylesheets().add(theme);
+            newMailStage.setScene(scene);
+            newMailStage.show();
+        }else{
+            //TODO: dire all'utente di selezionare una mail
+        }
     }
     
     @FXML
-    private void handleForwardButton(ActionEvent event) {
+    private void handleForwardButton(ActionEvent event) throws IOException {
         //TODO: Handle Click Here
         System.out.println("Forward Button Clicked");
+    
+        BorderPane root = new BorderPane();
+    
+        Scene thisScene = newMailButton.getScene();
+        System.out.println("scene stylesheets on button 2 click: " + thisScene.getStylesheets());
+    
+        ObjectProperty<Email> email = model.currentEmailProperty();
+    
+        String subject = "";
+        String body = "";
+    
+        if(email.getValue()!=null) {
+            subject = email.get().getObject();
+            body = email.get().getBody();
+            //TODO: load new mail GUI
+            FXMLLoader newMailLoader = new FXMLLoader(getClass().getResource("newMail.fxml"));
+            root.setCenter(newMailLoader.load());
+            NewEmailController newEmailController = newMailLoader.getController();
+            newEmailController.initModel(model, "", "Fwd: " + subject, body);
+    
+            theme = thisScene.getStylesheets().get(0);
+    
+            Stage newMailStage = new Stage();
+            Scene scene = new Scene(root, 900, 550);
+            scene.getStylesheets().add(theme);
+            newMailStage.setScene(scene);
+            newMailStage.show();
+        }else{
+            //TODO: dire all'utente di selezionare una mail
+        }
     }
     
     @FXML
     private void handleDeleteButton(ActionEvent event) {
         //TODO: Handle Click Here
         System.out.println("Delete Button Clicked");
-        model.deleteEmail(model.getCurrentEmail());
+        
+        ObjectProperty<Email> email = model.currentEmailProperty();
+    
+        //TODO: gestire il caso in cui non seleziono nessuna mail -> va bene gestito così?
+        if(email.getValue()!=null) {
+            model.deleteEmail(model.getCurrentEmail());
+        } else{
+            //TODO: dire all'utente di selezionare una mail
+        }
     }
     
     //TODO: non dovrebbe servire un metodo per caricare un file -> in caso rimuoverlo

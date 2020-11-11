@@ -46,26 +46,26 @@ public class EmailDataModel {
         
         emailList.setAll(
                 new Email((long) 0, "livio.scarpinati@gmail.com", receiverList,
-                        "Esercizi LPP", "Buongiorno, ecco a voi gli esercizi di LPP. \n Saluti. \n Livio",
+                        "Esercizi LPP", "Buongiorno, ecco a voi gli esercizi di LPP. \nSaluti. \nLivio",
                         new GregorianCalendar(2020, Calendar.SEPTEMBER, 22)),
                 new Email((long) 1, "livio.scarpinati@gmail.com", receiverListDuplicate,
-                        "Esercizi Prog III", "Buongiorno, ecco a voi gli esercizi di Prog III. \n Saluti. " +
-                        "\n Livio", new GregorianCalendar(2020, Calendar.OCTOBER, 18)),
+                        "Esercizi Prog III", "Buongiorno, ecco a voi gli esercizi di Prog III. \nSaluti. " +
+                        "\nLivio", new GregorianCalendar(2020, Calendar.OCTOBER, 18)),
                 new Email((long) 0, "laura.ventrice@gmail.com", receiverList,
-                        "Esercizi TWEB", "Buongiorno, ecco a voi gli esercizi di TWEB. \n Saluti. " +
-                        "\n Laura", new GregorianCalendar(2020, Calendar.NOVEMBER, 1)),
+                        "Esercizi TWEB", "Buongiorno, ecco a voi gli esercizi di TWEB. \nSaluti. " +
+                        "\nLaura", new GregorianCalendar(2020, Calendar.NOVEMBER, 1)),
                 new Email((long) 1, "laura.ventrice@gmail.com", receiverListDuplicate,
-                        "Esercizi EGI", "Buongiorno, ecco a voi gli esercizi di EGI. \n Saluti. \n Laura",
+                        "Esercizi EGI", "Buongiorno, ecco a voi gli esercizi di EGI. \nSaluti. \nLaura",
                         new GregorianCalendar(2020, Calendar.OCTOBER, 11)),
                 new Email((long) 0, "enrico.pileggi@gmail.com", receiverList,
-                        "Esercizi SO", "Buongiorno, ecco a voi gli esercizi di SO. \n Saluti. \n Enrico",
+                        "Esercizi SO", "Buongiorno, ecco a voi gli esercizi di SO. \nSaluti. \nEnrico",
                         new GregorianCalendar(2019, Calendar.JANUARY, 14)),
                 new Email((long) 1, "kim.viberti@gmail.com", receiverListDuplicate,
-                        "Esercizi Android", "Buongiorno, ecco a voi gli esercizi di Android. \n Saluti." +
-                        " \n Kim", new GregorianCalendar(2020, Calendar.DECEMBER, 18)),
+                        "Esercizi Android", "Buongiorno, ecco a voi gli esercizi di Android. \nSaluti." +
+                        " \nKim", new GregorianCalendar(2020, Calendar.DECEMBER, 18)),
                 new Email((long) 1, "kim.viberti@gmail.com", receiverListDuplicate,
-                        "Esercizi Prog I", "Buongiorno, ecco a voi gli esercizi di Prog I. \n Saluti." +
-                        " \n Kim", new GregorianCalendar(2018, Calendar.DECEMBER, 05)));
+                        "Esercizi Prog I", "Buongiorno, ecco a voi gli esercizi di Prog I. \nSaluti." +
+                        " \nKim", new GregorianCalendar(2018, Calendar.DECEMBER, 05)));
         
         emailList.sort((o1, o2) -> -o1.getDate().compareTo(o2.getDate())); //orders emailList from most recent to less recent
         

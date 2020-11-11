@@ -16,11 +16,15 @@ public class NewEmailController {
     @FXML
     private TextArea bodyEmail;
     
-    public void initModel(EmailDataModel model) {
+    public void initModel(EmailDataModel model, String sender, String subject, String body) {
         if(this.model != null) {
             throw new IllegalStateException("Model can only be initialized once");
         }
+        
         this.model = model;
+        this.receivers.setText(sender);
+        this.subjectEmail.setText(subject);
+        this.bodyEmail.setText(body);
     }
     
     @FXML
@@ -31,7 +35,7 @@ public class NewEmailController {
         System.out.println("subjectEmail: " + subjectEmail.getText());
         System.out.println("bodyEmail: " + bodyEmail.getText());
         
-        //TODO: gestire l'inserimento di più destinatari e controllare che i dati iinseriti siano delle email
+        //TODO: gestire l'inserimento di più destinatari e controllare che i dati inseriti siano delle email
     }
     
     
