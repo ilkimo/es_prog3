@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/2-SocketStrings/2-SocketStrings.iml" filepath="$PROJECT_DIR$/2-SocketStrings/2-SocketStrings.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3-SocketObjects/3-SocketObjects.iml" filepath="$PROJECT_DIR$/3-SocketObjects/3-SocketObjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/4-SocketArray/4-SocketArray.iml" filepath="$PROJECT_DIR$/4-SocketArray/4-SocketArray.iml" />
+      <module fileurl="file://$PROJECT_DIR$/9-SOCKET.iml" filepath="$PROJECT_DIR$/9-SOCKET.iml" />
+    </modules>
+  </component>
+</project>
